@@ -1,1 +1,1 @@
-from kirby import Kirby
+from kirby.kirby import Kirby
