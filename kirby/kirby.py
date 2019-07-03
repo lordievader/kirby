@@ -27,8 +27,14 @@ class Kirby():
         if user is not None:
             self.user = user
 
+        else:
+            self.user = getpass.getuser()
+
         if keytab is not None:
             self.keytab = keytab
+
+        else:
+            self.keytab = find_keytab()
 
         with open(
                 os.path.join(os.path.expanduser('~'), '.kirby'),
@@ -40,8 +46,6 @@ class Kirby():
             return
 
         logging.info("Performing Kerberos authentication for OpenINTEL ... ")
-        self.user = getpass.getuser()
-        self.keytab = find_keytab()
         if self.kinit() is True:
             logging.info("OK")
 
