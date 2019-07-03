@@ -17,13 +17,19 @@ class Kirby():
     user = None
     keytab = None
 
-    def __init__(self):
+    def __init__(self, user=None, keytab=None):
         """Sets up a kerberos ticket.
         """
         logging.basicConfig(
             format=('%(asctime)s - %(funcName)20s'
                     '- %(levelname)-8s - %(message)s'),
             level='DEBUG')
+        if user is not None:
+            self.user = user
+
+        if keytab is not None:
+            self.keytab = keytab
+
         with open(
                 os.path.join(os.path.expanduser('~'), '.kirby'),
                 'r') as kirby_file:
